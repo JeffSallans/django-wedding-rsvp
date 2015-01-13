@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block pageContent %}
+  <div class="inner cover formbox">
+    <h1 class="cover-heading">RSVP</h1>
+    <p class="lead">Will you be available to attend the wedding starting at 3pm on June 13th, 2015?</p>
+    <input id="toggle-on" class="toggle" name="toggle" type="radio" 
+      data-bind="checked: isAttending, 
+      checkedValue: true">
+    </input>
+    <label for="toggle-on" class="btn btn-lg btn-default">Yes</label>
+    <input id="toggle-off" class="toggle" name="toggle" type="radio" 
+      data-bind="checked: isAttending, 
+      checkedValue: false">
+    </input>
+    <label for="toggle-off" class="btn btn-lg btn-default">No</label>
+    <input type="hidden" data-bind="value: nameOfParty"></input>
+    <br />
+    <select data-bind="style: { visibility: visibleSetting()}, 
+      options: possibleAttendeesOptions, 
+      optionsCaption: 'How many will attend?', 
+      value: numberAttending">
+    </select>
+    <br />
+    <button class="btn btn-lg btn-default" data-bind="click: submit">Submit</button>
+  </div>
+{% endblock %}
+
+{% block djangoToKnockoutData %}
+
+<script>
+
+var rsvpObject = {{ rsvpJson }};
+
+</script>
+
+{% endblock %}
+
